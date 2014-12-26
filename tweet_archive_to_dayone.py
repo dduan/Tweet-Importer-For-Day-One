@@ -41,7 +41,7 @@ def format_tweet(rawTweet):
 
 
 def generate_entry_content(list_of_tweet, date_string):
-    return '## tweets\n### Posts on {}\n\n{}\n\n(#social #twitter)'.format(
+    return '## Tweets\n### Posts on {}\n\n{}\n\n(#social #twitter)'.format(
         date_string, 
         '\n'.join(['* {}'.format(format_tweet(t)).replace('\n', '\n  ') for t in list_of_tweet])
         )

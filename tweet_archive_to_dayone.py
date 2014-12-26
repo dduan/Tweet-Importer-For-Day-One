@@ -6,6 +6,8 @@ import os
 from datetime import datetime
 import re
 
+include_replies = False
+
 def organize_by_date(raw_data):
     entries = {} # by date
     for tweet in raw_data:
@@ -47,7 +49,7 @@ def generate_entry_content(list_of_tweet, date_string):
 if __name__ == '__main__':
     from tempfile import NamedTemporaryFile
     for tweet_file in [f for f in os.listdir(sys.argv[1]) if f.endswith('.js')]:
-        raw = json.loads('\n'.join(open(tweet_file).read().split('\n')[1:]))
+        raw = json.loads('\n'.join(open(os.path.join(sys.argv[1], tweet_file)).read().split('\n')[1:]))
         for (date, tweets) in organize_by_date(raw).items():
             entry = generate_entry_content(tweets, date)
             with NamedTemporaryFile('w') as f:
